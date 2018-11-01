@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Star Notary</title>
+        <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="style.css">
+    </head>
+
+    <body>
+        <div class="container">
+            <h1>Star Notary</h1>
+
+            <div id="stars-view">
+            </div>
+
+        </div>
+
+        <div id="star-template" style="display: none;">
+            <div class="star-block">
+                <div class="panel-body">
+                    
+                    <label class="label">Star Name:</label>
+                    <label class="bold star-name"></label>
+                    <br>
+                    
+                    <label class="label">Star Owner:</label><br>
+                    <label class="bold star-owner"></label>
+                    <br>
+
+                    <label class="label">Token Id:</label>
+                    <label class="bold star-id"></label>
+                    <br>
+
+                    <button class="star-action-button" data-id="0">Mint/Sell/Buy</button>
+                </div>
+                </div>
+            </div>
+        </div>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <script src="js/web3.min.js"></script>
+        <script src="js/truffle-contract.js"></script>
+        <script src="js/app.js"></script>
+    </body>
+</html>

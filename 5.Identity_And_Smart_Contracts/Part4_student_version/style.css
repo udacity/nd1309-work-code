@@ -1,0 +1,20 @@
+body {
+    background-color:#F0F0F0;
+    padding: 2em;
+    font-family: 'Raleway','Source Sans Pro', 'Arial';
+}
+.container {
+    width: 50%;
+    margin: 0 auto;
+}
+.bold { 
+    font-weight: bolder;
+}
+.row {
+    margin-bottom:10px;
+}
+button {
+    margin: 2em 0;
+    padding: 1em 4em;
+    display:block;
+}

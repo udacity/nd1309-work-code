@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Star Notary</title>
+        <link rel="stylesheet" type="text/css" href="style.css">
+
+        <script src="https://cdn.jsdelivr.net/gh/ethereum/web3.js/dist/web3.min.js"></script>
+    </head>
+
+    <body>
+        <div class="container">
+            <h1>Star Notary</h1>
+
+            <div class="row">
+                <label class="bold">Star Name:</label>
+                <label id="star-name"></label>
+            </div>
+
+            <div class="row">
+                <label class="bold">Star Owner:</label>
+                <label id="star-owner"></label>
+            </div>
+
+            <button id="claim-button" onclick="claimButtonClicked()">Claim Star</button>
+        </div>
+
+        <script>    
+         
+            // Instantiate and set Ganache as your provider
+            web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
+
+            // The default (top) wallet account from a list of test accounts 
+            // What happens ehre when you choose another account, say, at accounts[1], and 
+            // claim the star with that account?
+            web3.eth.defaultAccount = web3.eth.accounts[0];
+
+            // The interface definition for your smart contract (the ABI)
+            var StarNotary = web3.eth.contract(
+                // PASTE CONTRACT ABI HERE
+            );
+            // Grab the contract at specified deployed address with the interface defined by the ABI
+            var starNotary = StarNotary.at('<PASTE STAR NOTARY CONTRACT ADDRESS HERE>'); 
+            
+            // Get and display star name
+            // CODE FOR GETTING STAR NAME FROM THE SMART CONTRACT
+
+            // Get and display star owner
+            // CODE FOR GETTING STAR OWNER FROM THE SMART CONTRACT
+
+            // Enable claim button being clicked
+            function claimButtonClicked() { 
+                // CODE FOR CLAIMING STAR 
+            }
+        </script>
+    </body>
+</html>
