@@ -1,29 +1,12 @@
 # Blockchain Data
 
-Blockchain has the potential to change the way that the world approaches data. Develop Blockchain skills by understanding the data model behind Blockchain by developing your own simplified private blockchain.
+To use this boilerplate code locally follow this steps:
 
-## Getting Started
-
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
-
-### Prerequisites
-
-Installing Node and NPM is pretty straightforward using the installer package available from the (Node.js® web site)[https://nodejs.org/en/].
-
-### Configuring your project
-
-- Use NPM to initialize your project and create package.json to store project dependencies.
-```
-npm init
-```
-- Install crypto-js with --save flag to save dependency to our package.json file
-```
-npm install crypto-js --save
-```
-- Install level with --save flag
-```
-npm install level --save
-```
+1. Clone or download the project.
+2. Open your project with your favorite IDE.
+3. Run `npm install` to install the dependencies.
+4. Implement your code.
+5. Use `node app.js` to run the application.
 
 ## Testing
 
