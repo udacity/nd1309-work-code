@@ -30,9 +30,9 @@ function generateHash(obj) {
 	// Write your code here
 }
 
-console.log(`SHA265 Hash: ${generateHash(data1)}`);
+console.log(`SHA256 Hash: ${generateHash(data1)}`);
 console.log("************************************");
-console.log(`SHA265 Hash: ${generateHash(dataObject)}`);
+console.log(`SHA256 Hash: ${generateHash(dataObject)}`);
 
 /**
  * Run your application using `node app.js`
