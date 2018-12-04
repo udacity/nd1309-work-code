@@ -1,0 +1,30 @@
+{
+  "name": "udacity-wallet",
+  "version": "1.0.0",
+  "description": "Udacity wallet is client wallet api.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "Udacity",
+    "Wallet",
+    "Bitcoin",
+    "client"
+  ],
+  "author": "Jose R. Perera Morales",
+  "license": "ISC",
+  "dependencies": {
+    "@types/bitcoinjs-lib": "^4.0.0",
+    "bitcoin-core": "^2.0.0",
+    "bitcoinjs-lib": "^4.0.2",
+    "bitcoinjs-message": "^2.0.0",
+    "body-parser": "^1.18.3",
+    "cors": "^2.8.5",
+    "crypto-js": "^3.1.9-1",
+    "express": "^4.16.4",
+    "hex2ascii": "0.0.3",
+    "level": "^4.0.0",
+    "morgan": "^1.9.1"
+  }
+}
