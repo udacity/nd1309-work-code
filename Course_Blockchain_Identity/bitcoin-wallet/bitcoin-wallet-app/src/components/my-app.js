@@ -184,6 +184,7 @@ class MyApp extends LitElement {
         <a ?selected="${this._page === 'walletinfo'}" href="/walletinfo">Wallet Info</a>
         <a ?selected="${this._page === 'signature'}" href="/signature">Sign Message</a>
         <a ?selected="${this._page === 'blockhashutil'}" href="/blockhashutil">Block Hash Utility</a>
+        <a ?selected="${this._page === 'latestblocks'}" href="/latestblocks">Latest Blocks</a>
       </nav>
     </app-header>
 
@@ -193,6 +194,7 @@ class MyApp extends LitElement {
         <a ?selected="${this._page === 'walletinfo'}" href="/walletinfo">Wallet Info</a>
         <a ?selected="${this._page === 'signature'}" href="/signature">Sign Message</a>
         <a ?selected="${this._page === 'blockhashutil'}" href="/blockhashutil">Block Hash Utility</a>
+        <a ?selected="${this._page === 'latestblocks'}" href="/latestblocks">Latest Blocks</a>
       </nav>
     </app-drawer>
 
@@ -201,6 +203,8 @@ class MyApp extends LitElement {
       <my-walletinfo class="page" ?active="${this._page === 'walletinfo'}"></my-walletinfo>
       <my-signature class="page" ?active="${this._page === 'signature'}"></my-signature>
       <my-blockhashutil class="page" ?active="${this._page === 'blockhashutil'}"></my-blockhashutil>
+      <my-latestblocks class="page" ?active="${this._page === 'latestblocks'}"></my-latestblocks>
+      
       <my-view404 class="page" ?active="${this._page === 'view404'}"></my-view404>
     </main>
 
@@ -274,7 +278,7 @@ class MyApp extends LitElement {
     this._loadPage(page);
     // Any other info you might want to extract from the path (like page type),
     // you can do here.
-
+    
     // Close the drawer - in case the *path* change came from a link in the drawer.
     this._updateDrawerState(false);
   }
@@ -301,6 +305,12 @@ class MyApp extends LitElement {
         break;
       case 'blockhashutil':
         import('../components/my-blockhashutil.js').then((module) => {
+          // Put code in here that you want to run every time when
+          // navigating to view1 after my-view1.js is loaded.
+        });
+        break;
+      case 'latestblocks':
+        import('../components/my-latestblocks.js').then((module) => {
           // Put code in here that you want to run every time when
           // navigating to view1 after my-view1.js is loaded.
         });

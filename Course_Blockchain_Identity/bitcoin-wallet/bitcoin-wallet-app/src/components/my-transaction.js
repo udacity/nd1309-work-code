@@ -58,7 +58,6 @@ export class MyTransaction extends LitElement {
                         }</span>
                     </div>
                 `)}
-            </ul>
             </div>
         `;
     }
@@ -76,7 +75,6 @@ export class MyTransaction extends LitElement {
             }
         }).then((transactions) => {
             this.transactions = transactions;
-            console.log(this.transactions);
         }).catch((error) => { console.log(error); })
     }
 }
