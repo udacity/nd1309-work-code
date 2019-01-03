@@ -13,7 +13,7 @@ class Blockchain {
         this.generateGenesisBlock();
     }
 
-    // Auxiliar method to create a Genesis Block (always with height= 0)
+    // Helper method to create a Genesis Block (always with height= 0)
     // You have to options, because the method will always execute when you create your blockchain
     // you will need to set this up statically or instead you can verify if the height !== 0 then you
     // will not create the genesis block
@@ -21,7 +21,7 @@ class Blockchain {
         // Add your code here
     }
 
-    // Get block height, it is auxiliar method that return the height of the blockchain
+    // Get block height, it is a helper method that return the height of the blockchain
     getBlockHeight() {
         // Add your code here
     }
