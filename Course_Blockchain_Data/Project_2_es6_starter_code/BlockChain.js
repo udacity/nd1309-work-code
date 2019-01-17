@@ -19,6 +19,14 @@ class Blockchain {
     // will not create the genesis block
     generateGenesisBlock(){
         // Add your code here
+        this.getBlockHeight().then((height) => {
+            if (height == 0) {
+                let genesisBlock = new Block.Block("First block in the chain - Genesis Block");
+                this.addBlock(genesisBlock);
+            }
+        }).catch((err) => {
+            console.log("Error in generateGenesisBlock", err);
+        });
     }
 
     // Get block height, it is a helper method that return the height of the blockchain
