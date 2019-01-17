@@ -82,11 +82,16 @@ class Blockchain {
     // Get Block By Height
     getBlock(height) {
         // Add your code here
-        let self = this;
         return new Promise((resolve, reject) => {
-            self.bd.getLevelDBData(height).then((block_string) => {
-                resolve(JSON.parse(block_string));
-            }).catch((err) => { reject(err) });
+            this.db.getLevelDBData(height).then((block) => {
+                block = JSON.parse(block);
+                resolve(block);
+            }).catch((err) => {
+                console.log("Error in getBlock in Promise", err);
+                reject(err);
+            });
+        }).catch((err) => {
+            console.log("Error in getBlock", err);
         });
     }
 
