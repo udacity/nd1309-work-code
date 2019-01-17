@@ -24,8 +24,17 @@ class Blockchain {
     // Get block height, it is a helper method that return the height of the blockchain
     getBlockHeight() {
         // Add your code here
-    const blocksCount = await this.bd.getBlocksCount() - 1
-    return blocksCount
+        creturn new Promise((resolve, reject) => {
+            this.db.getBlocksCount().then((height) => {
+                resolve(height);
+            }).catch((err) => {
+                console.log("Error in getBlockHeight", err);
+                reject(err);
+            });
+        }).catch((err) => {
+            console.log("Error in getBlockHeight", err);
+            reject(err);
+        });
     }
 
     // Add new block
