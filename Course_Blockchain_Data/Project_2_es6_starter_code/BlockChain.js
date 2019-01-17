@@ -98,80 +98,62 @@ class Blockchain {
     // Validate if Block is being tampered by Block Height
     validateBlock(height) {
         // Add your code here
-        let self = this;
         return new Promise((resolve, reject) => {
-            self.getBlock(height).then((target_block) => {
-                let origin_hash = target_block.hash;
-                target_block.hash = "";
-                let new_hash = SHA256(JSON.stringify(target_block)).toString();
-                if (origin_hash === new_hash) {
-                    resolve(true);
+            this.getBlock(height).then((block) => {
+                let blockHash = block.hash;
+                block.hash = "";
+                let validBlockHash = SHA256(JSON.stringify(block)).toString();
+                if (blockHash === validBlockHash) {
+                    if (height > 0) {
+                        // Get previous block hash to check with the value stored inside this block
+                        this.getBlock(height - 1).then((previousBlock) => {
+                            if (previousBlock.hash === block.previousBlockHash) {
+                                resolve(true);
+                            } else {
+                                resolve(false);
+                            }
+                        }).catch((err) => {
+                            console.log("Error in validateBlock in getBlock(-1)", err);
+                            reject(err);
+                        });
+                    } else {
+                        // Genesis block
+                        resolve(true);
+                    }
                 } else {
                     resolve(false);
                 }
-            }).catch((err) => reject(err));
+            }).catch((err) => {
+                console.log(err);
+                reject(err);
+            });
+        }).catch((err) => {
+            console.log("Error in validateBlock", err);
         });
     }
 
-        // Make sure the link(hash) to the previous block is valid.
-    validateLink(height) {
-        let self = this;
-        if (height === 0) {
-            return self.validateBlock(0);
-        } else {
-            return new Promise((resolve, reject) => {
-                self.getBlock(height).then((this_block) => {
-                    self.getBlock(height - 1).then((last_block) => {
-                        if (last_block.hash === this_block.previousBlockHash) {
-                            resolve(true);
-                        } else {
-                            resolve(false);
-                        }
-                    }).catch((err) => reject(err));
-                }).catch((err) => reject(err));
-            });
-        }
-    }
 
     // Validate Blockchain
     async validateChain() {
-        let self = this;
-        let block_validation = [];
-        let link_validation = [];
-        let err_log = new Set();
-
-        try {
-            // Push all the validation works into two Promise arrays.
-            await self.getBlockHeight().then((block_height) => {
-                console.log("Blocks to be validated: " + (block_height + 1));
-                for (let height = 0; height <= block_height; height++) {
-                    block_validation.push(self.validateBlock(height));
-                    link_validation.push(self.validateLink(height));
+        return new Promise((resolve, reject) => {
+            var promises = [];
+            this.getBlockHeight().then((height) => {
+                for (let i = 0; i < height - 1; i++) {
+                    // validate block
+                    promises.push(this.validateBlock(i));
                 }
-            });
-
-            // First check if the block is valid.
-            await Promise.all(block_validation).then((block_result) => {
-                for (let i = 0; i < block_result.length; i++) {
-                    if (block_result[i] === false) {
-                        err_log.add(i);
+                Promise.all(promises).then((values) => {
+                    if (values.every((value) => value === true)) {
+                        resolve(true);
+                    } else {
+                        resolve(values);
                     }
-                }
+                }).catch((err) => {
+                    console.log("Error in validateChain in Promise.all", err);
+                    reject(err);
+                });
             });
-
-            // Then check the links.
-            await Promise.all(link_validation).then((link_result) => {
-                for (let i = 0; i < link_result.length; i++) {
-                    if (link_result[i] === false) {
-                        err_log.add(i);
-                    }
-                }
-            });
-
-        } catch (err) {
-            console.log(err);
-        }
-        return err_log;
+        });
     }
 
     // Utility Method to Tamper a Block for Test Validation
