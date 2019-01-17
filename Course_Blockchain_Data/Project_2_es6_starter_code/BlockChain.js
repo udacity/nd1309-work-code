@@ -48,34 +48,34 @@ class Blockchain {
     // Add new block
     addBlock(block) {
         // Add your code here
-        let self = this;
         return new Promise((resolve, reject) => {
-            // Get lock height first.
-            self.getBlockHeight().then((height) => {
-                block.height = height + 1;
-                // Set block time by UTC timestamp.
-                block.time = new Date().getTime().toString().slice(0, -3);
-                // Get previous block hash if the block height is larger than 0.
-                if (block.height > 0) {
-                    self.getBlock(block.height - 1).then((pre_block) => {
-                        block.previousBlockHash = pre_block.hash;
-                        // Block hash with SHA256 using newBlock and converting to a string
-                        block.hash = SHA256(JSON.stringify(block)).toString();
-                        // Add block to db.
-                        self.bd.addLevelDBData(block.height, JSON.stringify(block)).then((result) => {
-                            resolve(result);
-                        }).catch((err) => { reject(err) });
-                    }).catch((err) => { reject(err) });
+            // Block height from levelDB
+            this.getBlockHeight().then((height) => {
+                newBlock.height = height;
+                // UTC timestamp
+                newBlock.timeStamp = new Date().getTime().toString().slice(0,-3);
+                if (newBlock.height > 0) {
+                    // previous block hash
+                    this.getBlock(newBlock.height - 1).then((previousBlock) => {
+                        newBlock.previousBlockHash = previousBlock.hash;
+                        // SHA256 requires a string of data
+                        newBlock.hash = SHA256(JSON.stringify(newBlock)).toString();
+                        // add block to chain
+                        resolve(this.db.addDataToLevelDB(JSON.stringify(newBlock).toString()));
+                    }).catch((err) => {
+                        console.log("Error in addBlock in getLevelDBData", err);
+                        reject(err);
+                    });
                 } else {
-                    // This function will also be used by adding genesis block.
-                    // Block hash with SHA256 using newBlock and converting to a string.
-                    block.hash = SHA256(JSON.stringify(block)).toString();
-                    // Add genesis block to database.
-                    self.bd.addLevelDBData(block.height, JSON.stringify(block)).then((result) => {
-                        resolve(result);
-                    }).catch((err) => { reject(err) });
+                    newBlock.hash = SHA256(JSON.stringify(newBlock)).toString();
+                    resolve(this.db.addDataToLevelDB(JSON.stringify(newBlock).toString()));
                 }
-            }).catch((err) => reject(err));
+            }).catch((err) => {
+                console.log("Error in addBlock in getBlockHeight", err);
+                reject(err);
+            });
+        }).catch((err) => {
+            console.log("Error in addBlock in Promise", err);
         });
     }
 
