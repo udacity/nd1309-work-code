@@ -2,109 +2,84 @@
 |  Class with a constructor for new blockchain      |
 |  ================================================ */
 
-const SHA256 = require('crypto-js/sha256')
-const LevelSandbox = require('./LevelSandbox.js')
-const Block = require('./Block.js')
+const SHA256 = require('crypto-js/sha256');
+const LevelSandbox = require('./LevelSandbox.js');
+const Block = require('./Block.js');
 
 class Blockchain {
   constructor () {
-    this.bd = new LevelSandbox.LevelSandbox()
-    this.generateGenesisBlock()
+    this.bd = new LevelSandbox.LevelSandbox();
+    this.generateGenesisBlock();
   }
 
-  // Create genesis block
-  async generateGenesisBlock () {
-    const height = await this.getBlockHeight()
-    if (height < 0) {
-      const genesisBlock = new Block.Block('Genesis Block')
-      genesisBlock.time = new Date().getTime().toString().slice(0, -3);
-      genesisBlock.hash = SHA256(JSON.stringify(genesisBlock)).toString();
-      this.bd.addLevelDBData(genesisBlock.height, JSON.stringify(genesisBlock)).then(_ => console.log('Genesis block created'))
-    } else {
-      console.log('Genesis block exists already')
-    }
-  }
+// Helper method to create a Genesis Block (always with height= 0)
+// You have to options, because the method will always execute when you create your blockchain
+// you will need to set this up statically or instead you can verify if the height !== 0 then you
+// will not create the genesis block
+async generateGenesisBlock () {
+    // Add your code here
+    const genesisBlock = new Block.Block('First block in the chain - Genesis block');
+    genesisBlock.time = new Date().getTime().toString().slice(0, -3);
+    genesisBlock.hash = SHA256(JSON.stringify(genesisBlock)).toString();
+    this.bd.addLevelDBData(genesisBlock.height, JSON.stringify(genesisBlock).toString());
+}
 
-  /* Get the height of the BlockChain
-  returns: Promise
-  */
-  async getBlockHeight () {
-    const blocksCount = await this.bd.getBlocksCount() - 1;
-    return blocksCount;
-  }
+// Get block height, it is a helper method that return the height of the blockchain
+async getBlockHeight () {
+    // Add your code here
+    return await this.bd.getBlocksCount() - 1;
+}
 
-  /* Add new block
-  arg: Block
-  returns: Promise
-  */
-  async addBlock (newBlock) {
-    const height = await this.getBlockHeight()
-    newBlock.height = height + 1
+// Add new block
+async addBlock (newBlock) {
+    // Add your code here
+    const height = await this.getBlockHeight();
+    newBlock.height = height + 1;
     newBlock.time = new Date().getTime().toString().slice(0, -3);
-    if (newBlock.height > 0) {
-      const previousBlock = await this.getBlock(height)
-      newBlock.previousBlockHash = previousBlock.hash
-    } else {
-      // if no genesis block create one
-      await this.generateGenesisBlock()
-    }
+    const previousBlock = await this.getBlock(height)
+    newBlock.previousBlockHash = previousBlock.hash
     newBlock.hash = SHA256(JSON.stringify(newBlock)).toString();
-    // Store block within levelDB
-    return this.bd.addLevelDBData(newBlock.height, JSON.stringify(newBlock))
-  }
+    return this.bd.addLevelDBData(newBlock.height, JSON.stringify(newBlock).toString());
+}
 
-  /* get block object from the blockchain
-  arg: height integer
-  returns: Promise
-  */
-  async getBlock (height) {
+// Get Block By Height
+async getBlock (height) {
+    // Add your code here
     return JSON.parse(await this.bd.getLevelDBData(height))
   }
 
-  /* Validate block = check if a block has been tampered
-  arg: height integer
-  returns: Promise
-  */
-  async validateBlock (height) {
-    const block = await this.getBlock(height)
-    const blockHash = block.hash
-    block.hash = ''
-    const validBlockHash = hash(block)
+
+// Validate if Block is being tampered by Block Height
+async validateBlock (height) {
+    // Add your code here
+    const block = await this.getBlock(height);
+    const blockHash = block.hash;
+    block.hash = '';
+    const validBlockHash = SHA256(JSON.stringify(block)).toString();
     if (validBlockHash === blockHash) {
-      return true
+      return true;
     } else {
-      return false
-    }
-  }
+      return false;
+    };
+}
 
-  /* Validate link
-  arg: height integer
-  returns: Promise
-  */
-  async validateLink (height) {
-    const block = await this.getBlock(height)
-    const previousBlock = await this.getBlock(height - 1)
-    return (block.previousBlockHash === previousBlock.hash)
-  }
-
-  // Validate Blockchain (chek if all blocks are valid)
-  async validateChain () {
-    const height = await this.getBlockHeight()
-    const promisesArray = []
-    // validate genesis block
-    promisesArray.push(await this.validateBlock(0))
-    // validate further blocks and their links
+// Validate Blockchain
+async validateChain () {
+    // Add your code here
+    const height = await this.getBlockHeight();
+    const checkedBlocks = [];
+    checkedBlocks.push(await this.validateBlock(0));
     for (let i = 1; i < height + 1; i++) {
-      promisesArray.push(await this.validateBlock(i), await this.validateLink(i))
+      checkedBlocks.push(await this.validateBlock(i));
     }
-    return Promise.all(promisesArray).then(valuesArray => {
-      return !valuesArray.toString().includes('f')
-    })
-  }
+    return Promise.all(checkedBlocks).then(validatedBlocks => {
+      return !validatedBlocks.toString().includes(false);
+    });
+}
 
-  // Utility Method to Tamper a Block for Test Validation
-  // This method is for testing purpose
-  _modifyBlock (height, block) {
+// Utility Method to Tamper a Block for Test Validation
+// This method is for testing purpose
+_modifyBlock (height, block) {
     let self = this
     return new Promise((resolve, reject) => {
       self.bd.addLevelDBData(height, JSON.stringify(block).toString())
@@ -117,12 +92,6 @@ class Blockchain {
         })
     })
   }
-}
-
-
-// Hash data
-function hash (objData) {
-  return 
 }
 
 module.exports.Blockchain = Blockchain
