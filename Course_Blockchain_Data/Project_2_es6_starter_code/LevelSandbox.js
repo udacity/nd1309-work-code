@@ -16,6 +16,14 @@ class LevelSandbox {
         let self = this;
         return new Promise(function(resolve, reject) {
             // Add your code here, remember in Promises you need to resolve() or reject()
+            self.db.get(key, function (err, value) {
+                if (err) {
+                    reject(err);
+                } else {
+                    // console.log('Value got: ' + value);
+                    resolve(value);
+                }
+            });
         });
     }
 
@@ -24,6 +32,14 @@ class LevelSandbox {
         let self = this;
         return new Promise(function(resolve, reject) {
             // Add your code here, remember in Promises you need to resolve() or reject() 
+            self.db.put(key, value, err => {
+                if (err) {
+                    console.log('Block' + key + ' submission failed', err)
+                    reject(err)
+                } else {
+                    resolve(value)
+                }
+            });
         });
     }
 
