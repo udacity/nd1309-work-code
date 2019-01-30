@@ -1,0 +1,979 @@
+{
+  "contractName": "ERC20TokenMetadata",
+  "abi": [
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "spender",
+          "type": "address"
+        },
+        {
+          "name": "value",
+          "type": "uint256"
+        }
+      ],
+      "name": "approve",
+      "outputs": [
+        {
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "totalSupply",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "from",
+          "type": "address"
+        },
+        {
+          "name": "to",
+          "type": "address"
+        },
+        {
+          "name": "value",
+          "type": "uint256"
+        }
+      ],
+      "name": "transferFrom",
+      "outputs": [
+        {
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "name": "who",
+          "type": "address"
+        }
+      ],
+      "name": "balanceOf",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "to",
+          "type": "address"
+        },
+        {
+          "name": "value",
+          "type": "uint256"
+        }
+      ],
+      "name": "transfer",
+      "outputs": [
+        {
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "name": "owner",
+          "type": "address"
+        },
+        {
+          "name": "spender",
+          "type": "address"
+        }
+      ],
+      "name": "allowance",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "name": "from",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "name": "to",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "name": "value",
+          "type": "uint256"
+        }
+      ],
+      "name": "Transfer",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "name": "owner",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "name": "spender",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "name": "value",
+          "type": "uint256"
+        }
+      ],
+      "name": "Approval",
+      "type": "event"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "tokenURI",
+      "outputs": [
+        {
+          "name": "",
+          "type": "string"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "sourceMap": "",
+  "deployedSourceMap": "",
+  "source": "pragma solidity ^0.5.0;\n\nimport \"../../token/ERC20/IERC20.sol\";\n\n/**\n * @title ERC-1047 Token Metadata\n * @dev See https://eips.ethereum.org/EIPS/eip-1046\n * @dev tokenURI must respond with a URI that implements https://eips.ethereum.org/EIPS/eip-1047\n */\ncontract ERC20TokenMetadata is IERC20 {\n    function tokenURI() external view returns (string memory);\n}\n\ncontract ERC20WithMetadata is ERC20TokenMetadata {\n    string private _tokenURI;\n\n    constructor (string memory tokenURI) public {\n        _tokenURI = tokenURI;\n    }\n\n    function tokenURI() external view returns (string memory) {\n        return _tokenURI;\n    }\n}\n",
+  "sourcePath": "/home/nventuro/dev/openzeppelin-solidity/contracts/drafts/ERC1046/TokenMetadata.sol",
+  "ast": {
+    "absolutePath": "/home/nventuro/dev/openzeppelin-solidity/contracts/drafts/ERC1046/TokenMetadata.sol",
+    "exportedSymbols": {
+      "ERC20TokenMetadata": [
+        2061
+      ],
+      "ERC20WithMetadata": [
+        2084
+      ]
+    },
+    "id": 2085,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 2052,
+        "literals": [
+          "solidity",
+          "^",
+          "0.5",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:23:23"
+      },
+      {
+        "absolutePath": "/home/nventuro/dev/openzeppelin-solidity/contracts/token/ERC20/IERC20.sol",
+        "file": "../../token/ERC20/IERC20.sol",
+        "id": 2053,
+        "nodeType": "ImportDirective",
+        "scope": 2085,
+        "sourceUnit": 5053,
+        "src": "25:38:23",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "baseContracts": [
+          {
+            "arguments": null,
+            "baseName": {
+              "contractScope": null,
+              "id": 2054,
+              "name": "IERC20",
+              "nodeType": "UserDefinedTypeName",
+              "referencedDeclaration": 5052,
+              "src": "287:6:23",
+              "typeDescriptions": {
+                "typeIdentifier": "t_contract$_IERC20_$5052",
+                "typeString": "contract IERC20"
+              }
+            },
+            "id": 2055,
+            "nodeType": "InheritanceSpecifier",
+            "src": "287:6:23"
+          }
+        ],
+        "contractDependencies": [
+          5052
+        ],
+        "contractKind": "contract",
+        "documentation": "@title ERC-1047 Token Metadata\n@dev See https://eips.ethereum.org/EIPS/eip-1046\n@dev tokenURI must respond with a URI that implements https://eips.ethereum.org/EIPS/eip-1047",
+        "fullyImplemented": false,
+        "id": 2061,
+        "linearizedBaseContracts": [
+          2061,
+          5052
+        ],
+        "name": "ERC20TokenMetadata",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "body": null,
+            "documentation": null,
+            "id": 2060,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "tokenURI",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 2056,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "317:2:23"
+            },
+            "returnParameters": {
+              "id": 2059,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 2058,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 2060,
+                  "src": "343:13:23",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 2057,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "343:6:23",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "342:15:23"
+            },
+            "scope": 2061,
+            "src": "300:58:23",
+            "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "external"
+          }
+        ],
+        "scope": 2085,
+        "src": "256:104:23"
+      },
+      {
+        "baseContracts": [
+          {
+            "arguments": null,
+            "baseName": {
+              "contractScope": null,
+              "id": 2062,
+              "name": "ERC20TokenMetadata",
+              "nodeType": "UserDefinedTypeName",
+              "referencedDeclaration": 2061,
+              "src": "392:18:23",
+              "typeDescriptions": {
+                "typeIdentifier": "t_contract$_ERC20TokenMetadata_$2061",
+                "typeString": "contract ERC20TokenMetadata"
+              }
+            },
+            "id": 2063,
+            "nodeType": "InheritanceSpecifier",
+            "src": "392:18:23"
+          }
+        ],
+        "contractDependencies": [
+          2061,
+          5052
+        ],
+        "contractKind": "contract",
+        "documentation": null,
+        "fullyImplemented": false,
+        "id": 2084,
+        "linearizedBaseContracts": [
+          2084,
+          2061,
+          5052
+        ],
+        "name": "ERC20WithMetadata",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "constant": false,
+            "id": 2065,
+            "name": "_tokenURI",
+            "nodeType": "VariableDeclaration",
+            "scope": 2084,
+            "src": "417:24:23",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_string_storage",
+              "typeString": "string"
+            },
+            "typeName": {
+              "id": 2064,
+              "name": "string",
+              "nodeType": "ElementaryTypeName",
+              "src": "417:6:23",
+              "typeDescriptions": {
+                "typeIdentifier": "t_string_storage_ptr",
+                "typeString": "string"
+              }
+            },
+            "value": null,
+            "visibility": "private"
+          },
+          {
+            "body": {
+              "id": 2074,
+              "nodeType": "Block",
+              "src": "492:37:23",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "id": 2072,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "argumentTypes": null,
+                      "id": 2070,
+                      "name": "_tokenURI",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 2065,
+                      "src": "502:9:23",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_string_storage",
+                        "typeString": "string storage ref"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "argumentTypes": null,
+                      "id": 2071,
+                      "name": "tokenURI",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 2067,
+                      "src": "514:8:23",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_string_memory_ptr",
+                        "typeString": "string memory"
+                      }
+                    },
+                    "src": "502:20:23",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage",
+                      "typeString": "string storage ref"
+                    }
+                  },
+                  "id": 2073,
+                  "nodeType": "ExpressionStatement",
+                  "src": "502:20:23"
+                }
+              ]
+            },
+            "documentation": null,
+            "id": 2075,
+            "implemented": true,
+            "kind": "constructor",
+            "modifiers": [],
+            "name": "",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 2068,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 2067,
+                  "name": "tokenURI",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 2075,
+                  "src": "461:22:23",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 2066,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "461:6:23",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "460:24:23"
+            },
+            "returnParameters": {
+              "id": 2069,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "492:0:23"
+            },
+            "scope": 2084,
+            "src": "448:81:23",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 2082,
+              "nodeType": "Block",
+              "src": "593:33:23",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "id": 2080,
+                    "name": "_tokenURI",
+                    "nodeType": "Identifier",
+                    "overloadedDeclarations": [],
+                    "referencedDeclaration": 2065,
+                    "src": "610:9:23",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage",
+                      "typeString": "string storage ref"
+                    }
+                  },
+                  "functionReturnParameters": 2079,
+                  "id": 2081,
+                  "nodeType": "Return",
+                  "src": "603:16:23"
+                }
+              ]
+            },
+            "documentation": null,
+            "id": 2083,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "tokenURI",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 2076,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "552:2:23"
+            },
+            "returnParameters": {
+              "id": 2079,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 2078,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 2083,
+                  "src": "578:13:23",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 2077,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "578:6:23",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "577:15:23"
+            },
+            "scope": 2084,
+            "src": "535:91:23",
+            "stateMutability": "view",
+            "superFunction": 2060,
+            "visibility": "external"
+          }
+        ],
+        "scope": 2085,
+        "src": "362:266:23"
+      }
+    ],
+    "src": "0:629:23"
+  },
+  "legacyAST": {
+    "absolutePath": "/home/nventuro/dev/openzeppelin-solidity/contracts/drafts/ERC1046/TokenMetadata.sol",
+    "exportedSymbols": {
+      "ERC20TokenMetadata": [
+        2061
+      ],
+      "ERC20WithMetadata": [
+        2084
+      ]
+    },
+    "id": 2085,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 2052,
+        "literals": [
+          "solidity",
+          "^",
+          "0.5",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:23:23"
+      },
+      {
+        "absolutePath": "/home/nventuro/dev/openzeppelin-solidity/contracts/token/ERC20/IERC20.sol",
+        "file": "../../token/ERC20/IERC20.sol",
+        "id": 2053,
+        "nodeType": "ImportDirective",
+        "scope": 2085,
+        "sourceUnit": 5053,
+        "src": "25:38:23",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "baseContracts": [
+          {
+            "arguments": null,
+            "baseName": {
+              "contractScope": null,
+              "id": 2054,
+              "name": "IERC20",
+              "nodeType": "UserDefinedTypeName",
+              "referencedDeclaration": 5052,
+              "src": "287:6:23",
+              "typeDescriptions": {
+                "typeIdentifier": "t_contract$_IERC20_$5052",
+                "typeString": "contract IERC20"
+              }
+            },
+            "id": 2055,
+            "nodeType": "InheritanceSpecifier",
+            "src": "287:6:23"
+          }
+        ],
+        "contractDependencies": [
+          5052
+        ],
+        "contractKind": "contract",
+        "documentation": "@title ERC-1047 Token Metadata\n@dev See https://eips.ethereum.org/EIPS/eip-1046\n@dev tokenURI must respond with a URI that implements https://eips.ethereum.org/EIPS/eip-1047",
+        "fullyImplemented": false,
+        "id": 2061,
+        "linearizedBaseContracts": [
+          2061,
+          5052
+        ],
+        "name": "ERC20TokenMetadata",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "body": null,
+            "documentation": null,
+            "id": 2060,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "tokenURI",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 2056,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "317:2:23"
+            },
+            "returnParameters": {
+              "id": 2059,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 2058,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 2060,
+                  "src": "343:13:23",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 2057,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "343:6:23",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "342:15:23"
+            },
+            "scope": 2061,
+            "src": "300:58:23",
+            "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "external"
+          }
+        ],
+        "scope": 2085,
+        "src": "256:104:23"
+      },
+      {
+        "baseContracts": [
+          {
+            "arguments": null,
+            "baseName": {
+              "contractScope": null,
+              "id": 2062,
+              "name": "ERC20TokenMetadata",
+              "nodeType": "UserDefinedTypeName",
+              "referencedDeclaration": 2061,
+              "src": "392:18:23",
+              "typeDescriptions": {
+                "typeIdentifier": "t_contract$_ERC20TokenMetadata_$2061",
+                "typeString": "contract ERC20TokenMetadata"
+              }
+            },
+            "id": 2063,
+            "nodeType": "InheritanceSpecifier",
+            "src": "392:18:23"
+          }
+        ],
+        "contractDependencies": [
+          2061,
+          5052
+        ],
+        "contractKind": "contract",
+        "documentation": null,
+        "fullyImplemented": false,
+        "id": 2084,
+        "linearizedBaseContracts": [
+          2084,
+          2061,
+          5052
+        ],
+        "name": "ERC20WithMetadata",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "constant": false,
+            "id": 2065,
+            "name": "_tokenURI",
+            "nodeType": "VariableDeclaration",
+            "scope": 2084,
+            "src": "417:24:23",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_string_storage",
+              "typeString": "string"
+            },
+            "typeName": {
+              "id": 2064,
+              "name": "string",
+              "nodeType": "ElementaryTypeName",
+              "src": "417:6:23",
+              "typeDescriptions": {
+                "typeIdentifier": "t_string_storage_ptr",
+                "typeString": "string"
+              }
+            },
+            "value": null,
+            "visibility": "private"
+          },
+          {
+            "body": {
+              "id": 2074,
+              "nodeType": "Block",
+              "src": "492:37:23",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "id": 2072,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "argumentTypes": null,
+                      "id": 2070,
+                      "name": "_tokenURI",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 2065,
+                      "src": "502:9:23",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_string_storage",
+                        "typeString": "string storage ref"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "argumentTypes": null,
+                      "id": 2071,
+                      "name": "tokenURI",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 2067,
+                      "src": "514:8:23",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_string_memory_ptr",
+                        "typeString": "string memory"
+                      }
+                    },
+                    "src": "502:20:23",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage",
+                      "typeString": "string storage ref"
+                    }
+                  },
+                  "id": 2073,
+                  "nodeType": "ExpressionStatement",
+                  "src": "502:20:23"
+                }
+              ]
+            },
+            "documentation": null,
+            "id": 2075,
+            "implemented": true,
+            "kind": "constructor",
+            "modifiers": [],
+            "name": "",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 2068,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 2067,
+                  "name": "tokenURI",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 2075,
+                  "src": "461:22:23",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 2066,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "461:6:23",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "460:24:23"
+            },
+            "returnParameters": {
+              "id": 2069,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "492:0:23"
+            },
+            "scope": 2084,
+            "src": "448:81:23",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 2082,
+              "nodeType": "Block",
+              "src": "593:33:23",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "id": 2080,
+                    "name": "_tokenURI",
+                    "nodeType": "Identifier",
+                    "overloadedDeclarations": [],
+                    "referencedDeclaration": 2065,
+                    "src": "610:9:23",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage",
+                      "typeString": "string storage ref"
+                    }
+                  },
+                  "functionReturnParameters": 2079,
+                  "id": 2081,
+                  "nodeType": "Return",
+                  "src": "603:16:23"
+                }
+              ]
+            },
+            "documentation": null,
+            "id": 2083,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "tokenURI",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 2076,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "552:2:23"
+            },
+            "returnParameters": {
+              "id": 2079,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 2078,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 2083,
+                  "src": "578:13:23",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 2077,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "578:6:23",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "577:15:23"
+            },
+            "scope": 2084,
+            "src": "535:91:23",
+            "stateMutability": "view",
+            "superFunction": 2060,
+            "visibility": "external"
+          }
+        ],
+        "scope": 2085,
+        "src": "362:266:23"
+      }
+    ],
+    "src": "0:629:23"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.5.0+commit.1d4f565a.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.0.0",
+  "updatedAt": "2019-01-18T18:48:50.532Z",
+  "devdoc": {
+    "details": "See https://eips.ethereum.org/EIPS/eip-1046tokenURI must respond with a URI that implements https://eips.ethereum.org/EIPS/eip-1047",
+    "methods": {},
+    "title": "ERC-1047 Token Metadata"
+  },
+  "userdoc": {
+    "methods": {}
+  }
+}

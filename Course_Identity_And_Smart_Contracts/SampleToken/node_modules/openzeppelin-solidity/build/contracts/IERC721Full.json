@@ -1,0 +1,685 @@
+{
+  "contractName": "IERC721Full",
+  "abi": [
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "name": "interfaceId",
+          "type": "bytes4"
+        }
+      ],
+      "name": "supportsInterface",
+      "outputs": [
+        {
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "name",
+      "outputs": [
+        {
+          "name": "",
+          "type": "string"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "name": "tokenId",
+          "type": "uint256"
+        }
+      ],
+      "name": "getApproved",
+      "outputs": [
+        {
+          "name": "operator",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "to",
+          "type": "address"
+        },
+        {
+          "name": "tokenId",
+          "type": "uint256"
+        }
+      ],
+      "name": "approve",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "totalSupply",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "from",
+          "type": "address"
+        },
+        {
+          "name": "to",
+          "type": "address"
+        },
+        {
+          "name": "tokenId",
+          "type": "uint256"
+        }
+      ],
+      "name": "transferFrom",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "name": "owner",
+          "type": "address"
+        },
+        {
+          "name": "index",
+          "type": "uint256"
+        }
+      ],
+      "name": "tokenOfOwnerByIndex",
+      "outputs": [
+        {
+          "name": "tokenId",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "from",
+          "type": "address"
+        },
+        {
+          "name": "to",
+          "type": "address"
+        },
+        {
+          "name": "tokenId",
+          "type": "uint256"
+        }
+      ],
+      "name": "safeTransferFrom",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "name": "index",
+          "type": "uint256"
+        }
+      ],
+      "name": "tokenByIndex",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "name": "tokenId",
+          "type": "uint256"
+        }
+      ],
+      "name": "ownerOf",
+      "outputs": [
+        {
+          "name": "owner",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "name": "owner",
+          "type": "address"
+        }
+      ],
+      "name": "balanceOf",
+      "outputs": [
+        {
+          "name": "balance",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "symbol",
+      "outputs": [
+        {
+          "name": "",
+          "type": "string"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "operator",
+          "type": "address"
+        },
+        {
+          "name": "_approved",
+          "type": "bool"
+        }
+      ],
+      "name": "setApprovalForAll",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "from",
+          "type": "address"
+        },
+        {
+          "name": "to",
+          "type": "address"
+        },
+        {
+          "name": "tokenId",
+          "type": "uint256"
+        },
+        {
+          "name": "data",
+          "type": "bytes"
+        }
+      ],
+      "name": "safeTransferFrom",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "name": "tokenId",
+          "type": "uint256"
+        }
+      ],
+      "name": "tokenURI",
+      "outputs": [
+        {
+          "name": "",
+          "type": "string"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "name": "owner",
+          "type": "address"
+        },
+        {
+          "name": "operator",
+          "type": "address"
+        }
+      ],
+      "name": "isApprovedForAll",
+      "outputs": [
+        {
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "name": "from",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "name": "to",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "name": "tokenId",
+          "type": "uint256"
+        }
+      ],
+      "name": "Transfer",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "name": "owner",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "name": "approved",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "name": "tokenId",
+          "type": "uint256"
+        }
+      ],
+      "name": "Approval",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "name": "owner",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "name": "operator",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "name": "approved",
+          "type": "bool"
+        }
+      ],
+      "name": "ApprovalForAll",
+      "type": "event"
+    }
+  ],
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "sourceMap": "",
+  "deployedSourceMap": "",
+  "source": "pragma solidity ^0.5.0;\n\nimport \"./IERC721.sol\";\nimport \"./IERC721Enumerable.sol\";\nimport \"./IERC721Metadata.sol\";\n\n/**\n * @title ERC-721 Non-Fungible Token Standard, full implementation interface\n * @dev See https://github.com/ethereum/EIPs/blob/master/EIPS/eip-721.md\n */\ncontract IERC721Full is IERC721, IERC721Enumerable, IERC721Metadata {\n    // solhint-disable-previous-line no-empty-blocks\n}\n",
+  "sourcePath": "/home/nventuro/dev/openzeppelin-solidity/contracts/token/ERC721/IERC721Full.sol",
+  "ast": {
+    "absolutePath": "/home/nventuro/dev/openzeppelin-solidity/contracts/token/ERC721/IERC721Full.sol",
+    "exportedSymbols": {
+      "IERC721Full": [
+        6658
+      ]
+    },
+    "id": 6659,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 6648,
+        "literals": [
+          "solidity",
+          "^",
+          "0.5",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:23:61"
+      },
+      {
+        "absolutePath": "/home/nventuro/dev/openzeppelin-solidity/contracts/token/ERC721/IERC721.sol",
+        "file": "./IERC721.sol",
+        "id": 6649,
+        "nodeType": "ImportDirective",
+        "scope": 6659,
+        "sourceUnit": 6620,
+        "src": "25:23:61",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "absolutePath": "/home/nventuro/dev/openzeppelin-solidity/contracts/token/ERC721/IERC721Enumerable.sol",
+        "file": "./IERC721Enumerable.sol",
+        "id": 6650,
+        "nodeType": "ImportDirective",
+        "scope": 6659,
+        "sourceUnit": 6647,
+        "src": "49:33:61",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "absolutePath": "/home/nventuro/dev/openzeppelin-solidity/contracts/token/ERC721/IERC721Metadata.sol",
+        "file": "./IERC721Metadata.sol",
+        "id": 6651,
+        "nodeType": "ImportDirective",
+        "scope": 6659,
+        "sourceUnit": 6682,
+        "src": "83:31:61",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "baseContracts": [
+          {
+            "arguments": null,
+            "baseName": {
+              "contractScope": null,
+              "id": 6652,
+              "name": "IERC721",
+              "nodeType": "UserDefinedTypeName",
+              "referencedDeclaration": 6619,
+              "src": "298:7:61",
+              "typeDescriptions": {
+                "typeIdentifier": "t_contract$_IERC721_$6619",
+                "typeString": "contract IERC721"
+              }
+            },
+            "id": 6653,
+            "nodeType": "InheritanceSpecifier",
+            "src": "298:7:61"
+          },
+          {
+            "arguments": null,
+            "baseName": {
+              "contractScope": null,
+              "id": 6654,
+              "name": "IERC721Enumerable",
+              "nodeType": "UserDefinedTypeName",
+              "referencedDeclaration": 6646,
+              "src": "307:17:61",
+              "typeDescriptions": {
+                "typeIdentifier": "t_contract$_IERC721Enumerable_$6646",
+                "typeString": "contract IERC721Enumerable"
+              }
+            },
+            "id": 6655,
+            "nodeType": "InheritanceSpecifier",
+            "src": "307:17:61"
+          },
+          {
+            "arguments": null,
+            "baseName": {
+              "contractScope": null,
+              "id": 6656,
+              "name": "IERC721Metadata",
+              "nodeType": "UserDefinedTypeName",
+              "referencedDeclaration": 6681,
+              "src": "326:15:61",
+              "typeDescriptions": {
+                "typeIdentifier": "t_contract$_IERC721Metadata_$6681",
+                "typeString": "contract IERC721Metadata"
+              }
+            },
+            "id": 6657,
+            "nodeType": "InheritanceSpecifier",
+            "src": "326:15:61"
+          }
+        ],
+        "contractDependencies": [
+          3202,
+          6619,
+          6646,
+          6681
+        ],
+        "contractKind": "contract",
+        "documentation": "@title ERC-721 Non-Fungible Token Standard, full implementation interface\n@dev See https://github.com/ethereum/EIPs/blob/master/EIPS/eip-721.md",
+        "fullyImplemented": false,
+        "id": 6658,
+        "linearizedBaseContracts": [
+          6658,
+          6681,
+          6646,
+          6619,
+          3202
+        ],
+        "name": "IERC721Full",
+        "nodeType": "ContractDefinition",
+        "nodes": [],
+        "scope": 6659,
+        "src": "274:124:61"
+      }
+    ],
+    "src": "0:399:61"
+  },
+  "legacyAST": {
+    "absolutePath": "/home/nventuro/dev/openzeppelin-solidity/contracts/token/ERC721/IERC721Full.sol",
+    "exportedSymbols": {
+      "IERC721Full": [
+        6658
+      ]
+    },
+    "id": 6659,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 6648,
+        "literals": [
+          "solidity",
+          "^",
+          "0.5",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:23:61"
+      },
+      {
+        "absolutePath": "/home/nventuro/dev/openzeppelin-solidity/contracts/token/ERC721/IERC721.sol",
+        "file": "./IERC721.sol",
+        "id": 6649,
+        "nodeType": "ImportDirective",
+        "scope": 6659,
+        "sourceUnit": 6620,
+        "src": "25:23:61",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "absolutePath": "/home/nventuro/dev/openzeppelin-solidity/contracts/token/ERC721/IERC721Enumerable.sol",
+        "file": "./IERC721Enumerable.sol",
+        "id": 6650,
+        "nodeType": "ImportDirective",
+        "scope": 6659,
+        "sourceUnit": 6647,
+        "src": "49:33:61",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "absolutePath": "/home/nventuro/dev/openzeppelin-solidity/contracts/token/ERC721/IERC721Metadata.sol",
+        "file": "./IERC721Metadata.sol",
+        "id": 6651,
+        "nodeType": "ImportDirective",
+        "scope": 6659,
+        "sourceUnit": 6682,
+        "src": "83:31:61",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "baseContracts": [
+          {
+            "arguments": null,
+            "baseName": {
+              "contractScope": null,
+              "id": 6652,
+              "name": "IERC721",
+              "nodeType": "UserDefinedTypeName",
+              "referencedDeclaration": 6619,
+              "src": "298:7:61",
+              "typeDescriptions": {
+                "typeIdentifier": "t_contract$_IERC721_$6619",
+                "typeString": "contract IERC721"
+              }
+            },
+            "id": 6653,
+            "nodeType": "InheritanceSpecifier",
+            "src": "298:7:61"
+          },
+          {
+            "arguments": null,
+            "baseName": {
+              "contractScope": null,
+              "id": 6654,
+              "name": "IERC721Enumerable",
+              "nodeType": "UserDefinedTypeName",
+              "referencedDeclaration": 6646,
+              "src": "307:17:61",
+              "typeDescriptions": {
+                "typeIdentifier": "t_contract$_IERC721Enumerable_$6646",
+                "typeString": "contract IERC721Enumerable"
+              }
+            },
+            "id": 6655,
+            "nodeType": "InheritanceSpecifier",
+            "src": "307:17:61"
+          },
+          {
+            "arguments": null,
+            "baseName": {
+              "contractScope": null,
+              "id": 6656,
+              "name": "IERC721Metadata",
+              "nodeType": "UserDefinedTypeName",
+              "referencedDeclaration": 6681,
+              "src": "326:15:61",
+              "typeDescriptions": {
+                "typeIdentifier": "t_contract$_IERC721Metadata_$6681",
+                "typeString": "contract IERC721Metadata"
+              }
+            },
+            "id": 6657,
+            "nodeType": "InheritanceSpecifier",
+            "src": "326:15:61"
+          }
+        ],
+        "contractDependencies": [
+          3202,
+          6619,
+          6646,
+          6681
+        ],
+        "contractKind": "contract",
+        "documentation": "@title ERC-721 Non-Fungible Token Standard, full implementation interface\n@dev See https://github.com/ethereum/EIPs/blob/master/EIPS/eip-721.md",
+        "fullyImplemented": false,
+        "id": 6658,
+        "linearizedBaseContracts": [
+          6658,
+          6681,
+          6646,
+          6619,
+          3202
+        ],
+        "name": "IERC721Full",
+        "nodeType": "ContractDefinition",
+        "nodes": [],
+        "scope": 6659,
+        "src": "274:124:61"
+      }
+    ],
+    "src": "0:399:61"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.5.0+commit.1d4f565a.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.0.0",
+  "updatedAt": "2019-01-18T18:48:50.565Z",
+  "devdoc": {
+    "details": "See https://github.com/ethereum/EIPs/blob/master/EIPS/eip-721.md",
+    "methods": {
+      "supportsInterface(bytes4)": {
+        "details": "Interface identification is specified in ERC-165. This function uses less than 30,000 gas.",
+        "params": {
+          "interfaceId": "The interface identifier, as specified in ERC-165"
+        }
+      }
+    },
+    "title": "ERC-721 Non-Fungible Token Standard, full implementation interface"
+  },
+  "userdoc": {
+    "methods": {
+      "supportsInterface(bytes4)": {
+        "notice": "Query if a contract implements an interface"
+      }
+    }
+  }
+}
