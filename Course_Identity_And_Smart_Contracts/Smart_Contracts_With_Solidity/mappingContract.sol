@@ -1,30 +1,22 @@
-pragma solidity ^0.4.25;
+pragma solidity >=0.4.24;
 
-contract MappingContract {
-
+contract MappingsContract {
     // Creates in Storage
     mapping(string => string) relations;
 
     // Add a relation
-
-    function addRelation(string name, string relation) public {
-
+    function addRelation(string memory name, string memory relation) public {
         // Store the relation
-
         relations[name] = relation;
     }
 
     // Returns a Relation
-
-    function getRelation(string name) public view returns (string){
-
+    function getRelation(string memory name) public view returns (string memory){
         return relations[name];
-
     }
 
     // Remove the key value pair from the mapping
-
-    function removeRelation(string name) public {
+    function removeRelation(string memory name) public {
         delete(relations[name]);
     }
 }
