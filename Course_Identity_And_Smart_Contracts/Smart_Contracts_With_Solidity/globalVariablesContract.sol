@@ -1,12 +1,11 @@
-pragma solidity ^0.4.25;
+pragma solidity >=0.4.24;
 
-contract GlobalsContract {
+contract GlobalVariables {
 
     string  public lastCaller = "not-set";
 
-
     // Demonstrates the use of the ether subdenominations
-    function  etherUnitsTest() public pure returns(bool) {
+    function etherUnitsTest() public pure returns(bool) {
         // True
         bool value = (1 ether == 1000 finney);
         return value;
@@ -14,7 +13,7 @@ contract GlobalsContract {
 
     // Demonstrates the use of the time units
     function  timeUnits() public view returns (uint) {
-        uint  timeNow = now;   //storing current time using now
+        uint timeNow = now; //storing current time using now
         //returns block time in seconds since 1970
         if (timeNow == 1000 days) { // converting 1000 literal to days, using the suffix days
             return timeNow;
@@ -31,7 +30,7 @@ contract GlobalsContract {
     }
 
     // Demonstrates the use of the msg object
-    function getMsgInformation() public view returns (bytes data, bytes4 sig, address sender) {
+    function getMsgInformation() public view returns (bytes memory data, bytes4 sig, address sender) {
         data = msg.data;
         sig = msg.sig;
         sender = msg.sender;
