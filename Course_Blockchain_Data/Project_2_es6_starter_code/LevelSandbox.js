@@ -16,6 +16,15 @@ class LevelSandbox {
         let self = this;
         return new Promise(function(resolve, reject) {
             // Add your code here, remember in Promises you need to resolve() or reject()
+            self.db.get(key, function (err, value) {
+                if (err) {
+                    reject(`${key} Error!`);
+                    console.log(`${key} Error !`, err);
+
+                }
+                resolve(value);
+            });
+
         });
     }
 
@@ -24,18 +33,71 @@ class LevelSandbox {
         let self = this;
         return new Promise(function(resolve, reject) {
             // Add your code here, remember in Promises you need to resolve() or reject() 
+            self.db.put(key, JSON.stringify(value), function (success, err) {
+                if (err) {
+                    console.log('Error with Put!', err);
+                    reject(`(${key},${value}) Error with Put!`);
+                }
+                resolve(`${JSON.stringify(key)}, ${JSON.stringify(value)} Put successed !!`);
+            });
         });
     }
 
     // Method that return the height
     getBlocksCount() {
         let self = this;
+        const dataArray = [];
         return new Promise(function(resolve, reject){
             // Add your code here, remember in Promises you need to resolve() or reject()
+            self.db.createReadStream()
+                .on('data', function (data) {
+                    dataArray.push(data);
+                })
+                .on('error', function (err) {
+                    reject(err)
+                })
+                .on('close', function () {
+                    resolve(dataArray.length);
+                });
         });
     }
-        
+      
+    addDataToLevelDB(data) {
+        let i = 0;
+        return new Promise(function (resolve, reject) {
+            // Add your code here, remember in Promises you need to resolve() or reject()
+            this.db.createReadStream()
+                .on('data', function (data) {
+                    i++;
+                })
+                .on('error', function (err) {
+                    console.log('Failed to read stream!', err)
+                    reject(`Error addDataToLevelDB  !! ${data}`);
+                })
+                .on('close', function () {
+                    console.log('');
+                    console.log(`Adding Block....${i}`, data);
+                    this.addLevelDBData(i, data).then((writtenBlock) => {
+                        console.log('');
+                    }, (reject) => {
+                        console.log(' Adding block failed.....' + i);
+                    });
+                });
+        });
+    }
+
+    getBlock(height) {
+        let self = this;
+        return new Promise(function (resolve, reject) {
+            self.getLevelDBData(height)
+                .then((result) => {
+                resolve(result);
+            });
+        });
+    }
+
 
 }
+
 
 module.exports.LevelSandbox = LevelSandbox;
