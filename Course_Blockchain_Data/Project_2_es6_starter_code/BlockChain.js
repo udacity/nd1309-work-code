@@ -32,13 +32,18 @@ class Blockchain {
         // Add your code here
         return new Promise((resolve, reject) => {
             this.bd.getBlocksCount().then((chainLength) => {
-                (chainLength - 1 <= 0) ? resolve(0) : resolve(chainLength - 1)
+                if (chainLength - 1 <= 0) {
+                    resolve(0);
+                } else {
+                    resolve(chainLength - 1);
+                }
             });
         });
+
     }
 
     // Add new block
-    addBlock(newBlock) {
+    addBlock(block) {
         // Add your code here
         let self = this;
 
@@ -49,14 +54,14 @@ class Blockchain {
                 self.getBlock(chainLength - 1).then((blockData) => {
                     const previousBlock = JSON.parse(blockData);
                     block.previousBlockHash = previousBlock.hash;
-                    block.hash = SHA256(JSON.stringify(newBlock)).toString();
-                    return self.bd.addDataToLevelDB(newBlock);
+                    block.hash = SHA256(JSON.stringify(block)).toString();
+                    return self.bd.addDataToLevelDB(block);
                 }, (error) => {
                     console.log('Failed with get block !', error);
                 });
             } else {
-                block.hash = SHA256(JSON.stringify(newBlock)).toString();
-                return self.bd.addDataToLevelDB(newBlock);
+                block.hash = SHA256(JSON.stringify(block)).toString();
+                return self.bd.addDataToLevelDB(block);
             }
         }, (error) => {
             console.log('Failed with Add block !', error);

@@ -63,10 +63,11 @@ class LevelSandbox {
     }
       
     addDataToLevelDB(data) {
+        let self = this;
         let i = 0;
         return new Promise(function (resolve, reject) {
             // Add your code here, remember in Promises you need to resolve() or reject()
-            this.db.createReadStream()
+            self.db.createReadStream()
                 .on('data', function (data) {
                     i++;
                 })
@@ -77,7 +78,7 @@ class LevelSandbox {
                 .on('close', function () {
                     console.log('');
                     console.log(`Adding Block....${i}`, data);
-                    this.addLevelDBData(i, data).then((writtenBlock) => {
+                    self.addLevelDBData(i, data).then((writtenBlock) => {
                         console.log('');
                     }, (reject) => {
                         console.log(' Adding block failed.....' + i);
