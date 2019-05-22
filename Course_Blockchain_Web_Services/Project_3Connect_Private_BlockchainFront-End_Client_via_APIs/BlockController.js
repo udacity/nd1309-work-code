@@ -44,21 +44,22 @@ class BlockController {
      * Implement a POST Endpoint to add a new Block, url: "/api/block"
      */
     postNewBlock() {
+        let self = this;
         this.app.post("/block", (req, res) => {
             // Add your code here
-            if (req.body) {
+            if (req.body.data !== undefined) {
                 console.log(req.body);
-                let newBlock = new Block.Block(req.body);
-                console.log(newBlock);
-                return this.blockChain.addBlock(newBlock).then((result) => {
-                    console.log(result);
-                    return ( `Data received,  ${req.body}`)
+                let newBlock = new Block.Block(req.body.data);
+                // console.log(newBlock);
+                 self.blockChain.addBlock(newBlock).then((block) => {
+                    res.JSON(`Adding block sucssed' ,${block}` )
+                    // res.send(newBlock)
                 }).catch((err) => {
-                    console.log(err);
-                    res.JSON(`Adding block failed ${err}`);
+                    // console.log(err);
+                    res.send(`Adding block failed ${err}`);
                 });
             } else {
-                res.JSON(' Make sure to write data');
+                res.send(' Make sure to write data');
             }
         })
     }

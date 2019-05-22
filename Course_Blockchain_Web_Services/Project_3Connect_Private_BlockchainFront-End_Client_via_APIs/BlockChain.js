@@ -45,30 +45,31 @@ class Blockchain {
     // Add new block
     addBlock(block) {
         // Add your code here
-        let self = this;
-
-        return self.bd.getBlocksCount().then((chainLength) => {
-            block.height = chainLength;
-            block.time = new Date().getTime().toString().slice(0, -3);
-            if (chainLength > 0) {
-                self.getBlock(chainLength - 1).then((blockData) => {
-                    const previousBlock = JSON.parse(blockData);
-                    block.previousBlockHash = previousBlock.hash;
-                    block.hash = SHA256(JSON.stringify(block)).toString();
-                    return self.bd.addDataToLevelDB(block);
-                }, (error) => {
-                    console.log('Failed with get block !', error);
-                });
-            } else {
-                block.hash = SHA256(JSON.stringify(block)).toString();
-                return self.bd.addDataToLevelDB(block);
-            }
-        }, (error) => {
-            console.log('Failed with Add block !', error);
+        // let self = this;
+        return new Promise((resolve, reject) => {
+            this.getBlockHeight().then((chainLength) => {
+                // Block chainLength
+                block.height = chainLength + 1;
+                block.time = new Date().getTime().toString().slice(0, -3);
+                if (block.chainLength > -1) {
+                    this.getBlock(chainLength).then((value) => {
+                        let previousBlock = JSON.parse(value);
+                        block.previousBlockHash = previousBlock.hash;
+                        block.hash = SHA256(JSON.stringify(block)).toString();
+                        this.bd.addDataToLevelDB(block);
+                        resolve(block);
+                    }).catch((err) => {
+                        console.log(err);
+                        reject(`${err} Failed with get previous block data !`);
+                    });
+                }
+            }).catch((err) => {
+                console.log(err);
+                reject(`${err}Failed with Add block !!`);
+            });;
         });
-
-
     }
+
 
     // Get Block By Height
     getBlock(height) {

@@ -12,9 +12,9 @@ class LevelSandbox {
     }
 
     // Get data from levelDB with key (Promise)
-    getLevelDBData(key){
+    getLevelDBData(key) {
         let self = this;
-        return new Promise(function(resolve, reject) {
+        return new Promise(function (resolve, reject) {
             // Add your code here, remember in Promises you need to resolve() or reject()
             self.db.get(key, function (err, value) {
                 if (err) {
@@ -22,7 +22,7 @@ class LevelSandbox {
                     console.log(`${key} Error !`, err);
 
                 }
-                resolve(value,  'GET successed !!');
+                resolve(value, 'GET successed !!');
             });
 
         });
@@ -31,14 +31,14 @@ class LevelSandbox {
     // Add data to levelDB with key and value (Promise)
     addLevelDBData(key, value) {
         let self = this;
-        return new Promise(function(resolve, reject) {
+        return new Promise(function (resolve, reject) {
             // Add your code here, remember in Promises you need to resolve() or reject() 
             self.db.put(key, JSON.stringify(value), function (success, err) {
                 if (err) {
                     console.log('Error with Put!', err);
                     reject(`(${key},${value}) Error with Put!`);
                 }
-                resolve(`${JSON.stringify(key)}, ${JSON.stringify(value)} PUT successed !!`);
+                resolve(` ${JSON.stringify(value)}`);
             });
         });
     }
@@ -47,7 +47,7 @@ class LevelSandbox {
     getBlocksCount() {
         let self = this;
         const dataArray = [];
-        return new Promise(function(resolve, reject){
+        return new Promise(function (resolve, reject) {
             // Add your code here, remember in Promises you need to resolve() or reject()
             self.db.createReadStream()
                 .on('data', function (data) {
@@ -61,7 +61,7 @@ class LevelSandbox {
                 });
         });
     }
-      
+
     addDataToLevelDB(data) {
         let self = this;
         let i = 0;
@@ -76,24 +76,25 @@ class LevelSandbox {
                     reject(`Error addDataToLevelDB  !! ${data}`);
                 })
                 .on('close', function () {
-                    console.log(`Adding Block....${i}`, data);
-                    self.addLevelDBData(i, data).then((writtenBlock) => {
-                    }, (reject) => {
-                        console.log(' Adding block failed.....' + i);
+                    // console.log(`Adding Block....${i}`, data);
+                    self.addLevelDBData(i, data).then((result) => {
+                        resolve(result)
+                    }).catch((err) => {
+                        console.log(`${err} try`)
                     });
-                });
         });
-    }
+    });
+}
 
-    getBlock(height) {
-        let self = this;
-        return new Promise(function (resolve, reject) {
-            self.getLevelDBData(height)
-                .then((result) => {
+getBlock(height) {
+    let self = this;
+    return new Promise(function (resolve, reject) {
+        self.getLevelDBData(height)
+            .then((result) => {
                 resolve(result);
             });
-        });
-    }
+    });
+}
 
 
 }

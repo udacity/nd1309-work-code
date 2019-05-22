@@ -23,5 +23,5 @@ http://localhost:8000/  to be able to test the endpoint , you could use Postman:
      
 ```
 
-This function validates the whole chain and return a list of errors found during the validation.
+
 
