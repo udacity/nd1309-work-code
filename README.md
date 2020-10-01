@@ -1,4 +1,4 @@
-# Github Repository for Blockchain ND
+# Github Repository for Blockchain ND:
 
 Welcome to your Github repository for the Blockchain ND, in this repository you will find the boilerplate code for all the code exercises and code sessions.
 
