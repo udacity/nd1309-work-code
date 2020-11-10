@@ -10,7 +10,10 @@ contract StarNotary is ERC721 {
 
     mapping(uint256 => Star) public tokenIdToStarInfo;
     mapping(uint256 => uint256) public starsForSale;
-
+    
+    //Initialize ERC721 Token
+    constructor() ERC721("Star", "STR") public {
+    }
     
     // Create Star using the Struct
     function createStar(string memory _name, uint256 _tokenId) public {
